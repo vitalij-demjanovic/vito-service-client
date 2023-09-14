@@ -1,7 +1,9 @@
+import Login from "./pages/Login.tsx";
+
 function App() {
   return (
     <>
-      <h1 className="text-2xl">Vitalj</h1>
+      <Login />
     </>
   );
 }
