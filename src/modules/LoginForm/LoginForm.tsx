@@ -1,15 +1,25 @@
 import { FormEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../store/user/user.slice.ts";
+import { AppDispath } from "../../store/store.ts";
+
+export type ILoginForm = {
+  login: string;
+  password: string;
+};
 
 export default function LoginForm() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch<AppDispath>();
 
   const signupHandler = async (e: FormEvent) => {
     e.preventDefault();
-    console.log({
-      name: login,
-      password: password,
-    });
+    const sendData: ILoginForm = {
+      login,
+      password,
+    };
+    await dispatch(loginUser(sendData));
   };
 
   return (
