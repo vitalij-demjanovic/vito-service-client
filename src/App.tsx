@@ -1,9 +1,9 @@
-import Login from "./pages/Login.tsx";
+import CreatePart from "./pages/CreatePart.tsx";
 
 function App() {
   return (
     <>
-      <Login />
+      <CreatePart />
     </>
   );
 }
