@@ -1,23 +1,9 @@
 import SelectFunctionality from "../../components/SelectFunctionality.tsx";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import SelectCategories from "../../components/SelectCategories.tsx";
+import { useGetCategoriesQuery } from "../../store/api/categories.service.ts";
 
 export default function CreatePartForm() {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/categories")
-      .then((res) => {
-        setCategories(res.data);
-      })
-      .catch((e) => {
-        return e;
-      });
-  }, []);
-
-  console.log(categories);
+  const { data = [] } = useGetCategoriesQuery("");
 
   return (
     <>
@@ -50,7 +36,7 @@ export default function CreatePartForm() {
           <SelectFunctionality />
         </div>
         <div className="mb-4">
-          <SelectCategories categories={categories} />
+          <SelectCategories categories={data} />
         </div>
         <button className="bg-primary p-2 rounded-[20px] min-w-[300px] cursor-pointer">
           Vytvoriť
