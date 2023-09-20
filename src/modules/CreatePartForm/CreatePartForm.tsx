@@ -2,6 +2,7 @@ import SelectFunctionality from "../../components/SelectFunctionality.tsx";
 import SelectCategories from "../../components/SelectCategories.tsx";
 import { useGetCategoriesQuery } from "../../store/api/categories.service.ts";
 import { FormEvent, useState } from "react";
+import { useCreateItemMutation } from "../../store/api/create-item.service.ts";
 
 export default function CreatePartForm() {
   const [formData, setFormData] = useState({
@@ -13,17 +14,15 @@ export default function CreatePartForm() {
   const [functionality, setFunctionality] = useState("");
   const [category, setCategory] = useState("");
 
-  const { data = [] } = useGetCategoriesQuery("");
+  const { data = [], isSuccess } = useGetCategoriesQuery("");
+  const [createItem] = useCreateItemMutation();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
-
-    // For numeric fields (count and price), parse the value to a number
     const newValue =
       name === "count" || name === "price" ? parseFloat(value) : value;
-
     setFormData({
       ...formData,
       [name]: newValue,
@@ -32,13 +31,15 @@ export default function CreatePartForm() {
 
   const handleCreateItem = (e: FormEvent) => {
     e.preventDefault();
-
     const body = {
       ...formData,
       category,
       functionality,
     };
-    console.log(body);
+    createItem(body);
+    if (isSuccess === true) {
+      window.location.reload();
+    }
   };
 
   return (
