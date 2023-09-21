@@ -12,8 +12,10 @@ import { useDispatch } from "react-redux";
 import { AppDispath } from "../store/store.ts";
 import { useNavigate } from "react-router-dom";
 import { userActions } from "../store/user/user.slice.ts";
+import { useGetUserDataQuery } from "../store/api/user.service.ts";
 
 export default function NavBar() {
+  const { data } = useGetUserDataQuery("");
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
   const dispatch = useDispatch<AppDispath>();
@@ -32,7 +34,7 @@ export default function NavBar() {
       <nav className=" container py-2 flex items-center justify-between">
         <div className="flex items-center">
           <Logo appearance={"small"} />
-          <Welcome />
+          <Welcome name={data && data.login} />
         </div>
         <div className="flex items-center">
           <Links />
