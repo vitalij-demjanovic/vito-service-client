@@ -1,5 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
+import { loadState } from "../stortage.ts";
+
+export const JWT_PERSISTENT_STATE = "userData";
 
 export interface UserState {
   jwt: string | null;
@@ -8,7 +11,7 @@ export interface UserState {
 }
 
 const initialState: UserState = {
-  jwt: "" ?? null,
+  jwt: loadState<UserState>(JWT_PERSISTENT_STATE)?.jwt ?? null,
   isLoading: false,
   message: null,
 };
@@ -24,7 +27,6 @@ export const loginUser = createAsyncThunk(
           password: params.password,
         },
       );
-      console.log(data);
       return data;
     } catch (e) {
       if (e instanceof AxiosError) {
@@ -60,3 +62,4 @@ export const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
+export const userActions = userSlice.actions;

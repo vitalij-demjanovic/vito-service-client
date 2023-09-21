@@ -8,16 +8,27 @@ import {
 } from "@heroicons/react/24/solid";
 import MobileLinks from "./MobileLinks.tsx";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispath } from "../store/store.ts";
+import { useNavigate } from "react-router-dom";
+import { userActions } from "../store/user/user.slice.ts";
 
 export default function NavBar() {
+  const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
+  const dispatch = useDispatch<AppDispath>();
 
   const handleOpen = () => {
     setOpenMenu((openMenu) => !openMenu);
   };
 
+  const handleLogout = () => {
+    dispatch(userActions.logout());
+    navigate("/auth/login");
+  };
+
   return (
-    <div className="bg-primary">
+    <div className="bg-primary fixed top-0 w-full">
       <nav className=" container py-2 flex items-center justify-between">
         <div className="flex items-center">
           <Logo appearance={"small"} />
@@ -25,8 +36,11 @@ export default function NavBar() {
         </div>
         <div className="flex items-center">
           <Links />
-          <UserCircleIcon className="text-third h-8 w-8 ml-5 cursor-pointerň" />
-          <ArrowRightOnRectangleIcon className="text-third h-8 w-8 ml-5 cursor-pointer" />
+          <UserCircleIcon className="text-third h-8 w-8 ml-5 cursor-pointer" />
+          <ArrowRightOnRectangleIcon
+            onClick={handleLogout}
+            className="text-third h-8 w-8 ml-5 cursor-pointer"
+          />
           <Bars4Icon
             onClick={handleOpen}
             className="text-third h-8 w-8 ml-5 cursor-pointer md:hidden "
