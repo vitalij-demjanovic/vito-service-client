@@ -1,9 +1,11 @@
-import CreatePart from "./pages/CreatePart.tsx";
+import Login from "./pages/Login.tsx";
+import NavBar from "./components/NavBar.tsx";
 
 function App() {
   return (
     <>
-      <CreatePart />
+      <NavBar />
+      <Login />
     </>
   );
 }

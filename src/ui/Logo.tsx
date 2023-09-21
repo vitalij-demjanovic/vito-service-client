@@ -1,7 +1,20 @@
-export default function Logo() {
+import cn from "classnames";
+
+interface LogoI {
+  appearance: string;
+}
+
+export default function Logo({ appearance }: LogoI) {
   return (
     <>
-      <h1 className="text-[55px] logo mb-5">vito-service</h1>
+      <h1
+        className={cn("logo", {
+          "text-5xl mb-5": appearance === "big",
+          "text-2xl text-third": appearance === "small",
+        })}
+      >
+        vito-service
+      </h1>
     </>
   );
 }
