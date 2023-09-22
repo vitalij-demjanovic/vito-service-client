@@ -1,12 +1,12 @@
 import cn from "classnames";
+import { links } from "./links.ts";
+import { Link } from "react-router-dom";
 
 interface MobileLinksI {
   open: boolean;
   closed: () => void;
 }
 export default function MobileLinks({ open, closed }: MobileLinksI) {
-  const links: string[] = ["Home", "Sklad"];
-
   return (
     <>
       <ul
@@ -17,7 +17,7 @@ export default function MobileLinks({ open, closed }: MobileLinksI) {
       >
         {links.map((link, index) => (
           <li className="py-3 " key={index} onClick={closed}>
-            {link}
+            <Link to={link.path}>{link.name}</Link>
           </li>
         ))}
       </ul>

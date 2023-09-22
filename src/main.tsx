@@ -9,6 +9,8 @@ import DashboardLayout from "./layout/DashboardLayout.tsx";
 import Home from "./pages/Home.tsx";
 import AuthLayout from "./layout/AuthLayout.tsx";
 import Login from "./pages/Login.tsx";
+import Warehouse from "./pages/Warehouse.tsx";
+import Category from "./pages/Category.tsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/warehouse",
+        element: <Warehouse />,
+      },
+      {
+        path: "/warehouse/:id",
+        element: <Category />,
       },
     ],
   },

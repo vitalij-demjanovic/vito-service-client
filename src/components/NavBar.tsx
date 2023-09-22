@@ -1,12 +1,12 @@
 import Logo from "../ui/Logo.tsx";
 import Welcome from "../ui/Welcome.tsx";
-import Links from "./Links.tsx";
+import LinksDesc from "./Links/LinksDesc.tsx";
 import {
   UserCircleIcon,
   ArrowRightOnRectangleIcon,
   Bars4Icon,
 } from "@heroicons/react/24/solid";
-import MobileLinks from "./MobileLinks.tsx";
+import MobileLinks from "./Links/MobileLinks.tsx";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispath } from "../store/store.ts";
@@ -37,7 +37,7 @@ export default function NavBar() {
           <Welcome name={data && data.login} />
         </div>
         <div className="flex items-center">
-          <Links />
+          <LinksDesc />
           <UserCircleIcon className="text-third h-8 w-8 ml-5 cursor-pointer" />
           <ArrowRightOnRectangleIcon
             onClick={handleLogout}
