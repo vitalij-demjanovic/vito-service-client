@@ -14,7 +14,7 @@ export default function CartCategory({ category, categoryId }: CartCategoryI) {
 
   return (
     <div
-      className="text-3xl bg-primary max-w-lg p-2 mb-4 last:mb0 hover:bg-secondary duration-500 cursor-pointer"
+      className="text-3xl bg-primary w-min-[100%] w-[350px] p-2 mb-4 last:mb0 hover:bg-secondary duration-500 cursor-pointer"
       onClick={() => goCatgory(categoryId)}
     >
       {category}

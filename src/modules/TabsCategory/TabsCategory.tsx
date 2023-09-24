@@ -5,10 +5,17 @@ export default function TabsCategory() {
   const { data = [] } = useGetCategoriesQuery("");
 
   return (
-    <div>
-      {data.map((item: CategoryI) => (
-        <CartCategory categoryId={item.id} key={item.id} category={item.name} />
-      ))}
+    <div className="text-center">
+      <h1 className="text-5xl mb-8">Kategórie</h1>
+      <div className="flex gap-3 flex-wrap">
+        {data.map((item: CategoryI) => (
+          <CartCategory
+            categoryId={item.id}
+            key={item.id}
+            category={item.name}
+          />
+        ))}
+      </div>
     </div>
   );
 }

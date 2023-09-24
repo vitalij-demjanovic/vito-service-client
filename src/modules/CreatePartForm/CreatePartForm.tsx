@@ -43,8 +43,9 @@ export default function CreatePartForm() {
   };
 
   return (
-    <>
-      <form onSubmit={handleCreateItem} className="flex flex-col max-w-[500px]">
+    <div className="flex flex-col items-center max-w-[50%] m-auto">
+      <h1 className="text-5xl mb-8">Vytvoriť položku</h1>
+      <form onSubmit={handleCreateItem} className="flex flex-col w-full">
         <input
           type="text"
           name="name"
@@ -91,6 +92,6 @@ export default function CreatePartForm() {
           Vytvoriť
         </button>
       </form>
-    </>
+    </div>
   );
 }
